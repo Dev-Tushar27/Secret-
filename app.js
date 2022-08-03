@@ -98,7 +98,9 @@ app.post("/login", (req, res) => {
     if(err){
         console.log(err);
     }else{
-        res.redirect("/secrets");
+        passport.authenticate("local")(req,res,function(){
+            res.redirect("/secrets");
+        });
     }
    })
 });
